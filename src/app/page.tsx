@@ -1,15 +1,20 @@
-import { ArrowRight, CheckCircle2, LayoutDashboard, Database, Lock, RefreshCw, FileText } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
+import LiquidBackground from "@/components/LiquidBackground";
 
 export default function Home() {
     return (
         <div className="flex flex-col min-h-screen">
+            <LiquidBackground />
+            
             {/* Navigation */}
             <nav className="fixed top-0 w-full h-20 px-8 flex items-center justify-between z-50 bg-[#0f172a]/30 backdrop-blur-xl border-b border-white/5">
                 <div className="text-2xl font-black text-white tracking-tight">VLE</div>
                 <div className="hidden md:flex items-center gap-10">
                     <Link href="#features" className="text-sm font-medium text-slate-400 hover:text-white transition-colors">Features</Link>
                     <Link href="#how-it-works" className="text-sm font-medium text-slate-400 hover:text-white transition-colors">How It Works</Link>
+                    <Link href="#about" className="text-sm font-medium text-slate-400 hover:text-white transition-colors">About</Link>
                     <Link href="/login" className="text-sm font-medium text-slate-400 hover:text-white transition-colors">Login</Link>
                     <Link href="/signup" className="btn-primary py-2 px-6 text-sm">Get Started</Link>
                 </div>
@@ -82,7 +87,32 @@ export default function Home() {
                     </div>
                 </section>
 
-                {/* Philosophy / About Section matches original old style */}
+                {/* How It Works Section */}
+                <section id="how-it-works" className="py-24 px-8 container mx-auto">
+                    <div className="text-center mb-20">
+                        <h2 className="text-4xl md:text-5xl font-black text-white">How It Works</h2>
+                    </div>
+
+                    <div className="max-w-6xl mx-auto">
+                        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-start">
+                            <StepCard number="01" title="Select Goal" desc="Choose your target role or learning direction." />
+                            <div className="hidden md:block relative h-24">
+                                <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-[#ffd700] to-transparent"></div>
+                            </div>
+                            <StepCard number="02" title="Explore Graph" desc="View a structured roadmap of required skills." />
+                            <div className="hidden md:block relative h-24">
+                                <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-[#ffd700] to-transparent"></div>
+                            </div>
+                            <StepCard number="03" title="Verify Skills" desc="Complete verification tasks to unlock progress." />
+                            <div className="hidden md:block relative h-24">
+                                <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-[#ffd700] to-transparent"></div>
+                            </div>
+                            <StepCard number="04" title="Progress" desc="Unlock new skills and build your verified profile." />
+                        </div>
+                    </div>
+                </section>
+
+                {/* About Section */}
                 <section id="about" className="py-24 px-8 bg-black/20">
                     <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                         <div className="space-y-8">
@@ -90,7 +120,7 @@ export default function Home() {
                                 Redefining<br />
                                 <span className="text-[#ffd700]">Online Learning</span>
                             </h2>
-                            <p className="text-xl text-slate-300">
+                            <p className="text-xl text-slate-300 leading-relaxed">
                                 Verified Learning Engine (VLE) addresses the fundamental flaw in modern ed-tech: <strong>measuring activity instead of competence.</strong>
                             </p>
 
@@ -98,48 +128,37 @@ export default function Home() {
                                 <div className="p-6 rounded-2xl bg-red-500/5 border border-red-500/10">
                                     <h4 className="font-bold text-red-500 mb-4">Traditional Platforms</h4>
                                     <ul className="space-y-2 text-sm text-slate-400">
-                                        <li>✕ Videos watched</li>
-                                        <li>✕ Courses completed</li>
-                                        <li>✕ Streaks maintained</li>
-                                        <li>✕ False confidence</li>
+                                        <li>❌ Videos watched</li>
+                                        <li>❌ Courses completed</li>
+                                        <li>❌ Streaks maintained</li>
+                                        <li>❌ False confidence</li>
                                     </ul>
                                 </div>
                                 <div className="p-6 rounded-2xl bg-[#ffd700]/5 border border-[#ffd700]/10">
                                     <h4 className="font-bold text-[#ffd700] mb-4">The VLE Way</h4>
                                     <ul className="space-y-2 text-sm text-slate-400">
-                                        <li>✓ Demonstrated competence</li>
-                                        <li>✓ Verified ability</li>
-                                        <li>✓ Locked progression</li>
-                                        <li>✓ True capability</li>
+                                        <li>✅ Demonstrated competence</li>
+                                        <li>✅ Verified ability</li>
+                                        <li>✅ Locked progression</li>
+                                        <li>✅ True capability</li>
                                     </ul>
                                 </div>
+                            </div>
+
+                            <div className="p-6 rounded-2xl bg-white/5 border border-white/10">
+                                <h3 className="text-xl font-bold text-white mb-3">Our Philosophy</h3>
+                                <p className="text-slate-400">Watching resources does not unlock skills. Verification governs progression.</p>
                             </div>
                         </div>
 
                         <div className="relative">
-                            <div className="liquid-glass rounded-3xl p-1 overflow-hidden">
-                                <div className="bg-[#0f172a] rounded-[22px] overflow-hidden">
-                                    <div className="h-10 bg-white/5 border-b border-white/10 flex items-center px-4 justify-between">
-                                        <div className="flex gap-2">
-                                            <div className="w-3 h-3 rounded-full bg-red-500/50"></div>
-                                            <div className="w-3 h-3 rounded-full bg-yellow-500/50"></div>
-                                            <div className="w-3 h-3 rounded-full bg-green-500/50"></div>
-                                        </div>
-                                        <span className="text-[10px] text-slate-500 font-mono tracking-widest">vle-dashboard.exe</span>
-                                    </div>
-                                    <div className="p-8 aspect-video flex flex-col items-center justify-center text-center space-y-4">
-                                        <LayoutDashboard className="w-12 h-12 text-[#ffd700] opacity-50" />
-                                        <p className="text-slate-500 font-mono text-sm leading-relaxed">
-                                            [ SYSTEM INITIALIZED ]<br />
-                                            FETCHING COMPETENCY GRAPH...<br />
-                                            USER_ID: VLE_0821_BETA
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="mt-6 text-center text-sm font-medium text-slate-500">
-                                Visualize your progress on the <strong>Interactive Dashboard</strong>
-                            </div>
+                            <Image 
+                                src="/ChatGPT Image Feb 19, 2026, 07_48_32 PM.png" 
+                                alt="VLE Dashboard Visualization" 
+                                width={800} 
+                                height={600} 
+                                className="rounded-3xl shadow-2xl border border-white/10"
+                            />
                         </div>
                     </div>
                 </section>
@@ -157,7 +176,7 @@ export default function Home() {
             </main>
 
             <footer className="py-12 border-t border-white/5 px-8 text-center text-slate-600 text-sm">
-                <p>© 2024 VLE - Verified Learning Engine. All rights reserved.</p>
+                <p>© 2026 VLE - Verified Learning Engine. All rights reserved.</p>
             </footer>
         </div>
     );
@@ -172,5 +191,17 @@ function FeatureCard({ icon, title, desc }: { icon: string, title: string, desc:
                 {desc}
             </p>
         </div>
-    )
+    );
+}
+
+function StepCard({ number, title, desc }: { number: string, title: string, desc: string }) {
+    return (
+        <div className="text-center space-y-4">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#ffd700]/10 border-2 border-[#ffd700] text-[#ffd700] font-black text-xl">
+                {number}
+            </div>
+            <h3 className="text-xl font-bold text-white">{title}</h3>
+            <p className="text-slate-400 text-sm">{desc}</p>
+        </div>
+    );
 }
