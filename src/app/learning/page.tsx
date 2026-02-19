@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { api } from "@/lib/api";
 import { CheckCircle2, Circle, PlayCircle, FileText, Clock, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
-export default function LearningPage() {
+function LearningContent() {
     const searchParams = useSearchParams();
     const router = useRouter();
     const pathId = searchParams.get("path");
@@ -273,5 +273,20 @@ export default function LearningPage() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function LearningPage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen flex items-center justify-center">
+                <div className="text-center space-y-4">
+                    <div className="w-16 h-16 border-4 border-[#ffd700] border-t-transparent rounded-full animate-spin mx-auto"></div>
+                    <p className="text-slate-400">Loading...</p>
+                </div>
+            </div>
+        }>
+            <LearningContent />
+        </Suspense>
     );
 }
