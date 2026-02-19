@@ -96,15 +96,21 @@ export default function RoadmapDetailPage() {
     };
 
     const startRoadmap = async () => {
+        // Check if user is logged in
+        const token = localStorage.getItem("vle_token");
+        if (!token) {
+            router.push("/login");
+            return;
+        }
+
         try {
             await api.post(`/roadmaps/${params.id}/start`);
-            alert("Roadmap started! Track your progress in the dashboard.");
+            alert("Roadmap started! Check your progress in My Learning.");
+            // Optionally redirect to My Learning
+            router.push("/my-learning");
         } catch (err: any) {
-            if (err.message.includes("401")) {
-                router.push("/login");
-            } else {
-                alert("Failed to start roadmap. Please try again.");
-            }
+            console.error("Failed to start roadmap:", err);
+            alert("Failed to start roadmap. Please try again.");
         }
     };
 

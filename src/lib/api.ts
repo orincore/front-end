@@ -22,17 +22,34 @@ class ApiClient {
             ...options.headers,
         };
 
-        const response = await fetch(url, {
-            ...options,
-            headers,
-        });
+        try {
+            const response = await fetch(url, {
+                ...options,
+                headers,
+            });
 
-        if (!response.ok) {
-            const errorData = await response.json().catch(() => ({}));
-            throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+            // Handle different response statuses
+            if (response.status === 401) {
+                // Unauthorized - clear token and throw error
+                if (typeof window !== 'undefined') {
+                    localStorage.removeItem('vle_token');
+                }
+                throw new Error('401: Unauthorized - Please login again');
+            }
+
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+            }
+
+            return response.json();
+        } catch (error) {
+            // Network errors or other fetch failures
+            if (error instanceof Error) {
+                throw error;
+            }
+            throw new Error('Network error - please check your connection');
         }
-
-        return response.json();
     }
 
     get<T>(endpoint: string, options: RequestInit = {}) {

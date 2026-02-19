@@ -1,4 +1,4 @@
-// File: /Users/orincore/Documents/front-end/src/app/cv-builder/page.tsx
+// File: C:\Users\Mi\Desktop\New folder (3)\frontend\src\app\cv-builder\page.tsx
 import * as entry from '../../../../src/app/cv-builder/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

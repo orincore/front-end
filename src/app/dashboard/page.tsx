@@ -41,6 +41,7 @@ export default function DashboardPage() {
         } catch (err) {
             console.error("Failed to fetch user data:", err);
             setIsLoggedIn(false);
+            localStorage.removeItem("vle_token");
         } finally {
             setLoading(false);
         }

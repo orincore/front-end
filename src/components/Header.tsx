@@ -40,12 +40,12 @@ export default function Header() {
         ? [
             { href: "/dashboard", label: "Dashboard" },
             { href: "/my-learning", label: "My Learning" },
-            { href: "/explore", label: "Explore" },
+            { href: "/roadmaps", label: "Explore" },
             { href: "/cv-builder", label: "CV Builder" },
         ]
         : [
             { href: "/", label: "Home" },
-            { href: "/explore", label: "Explore" },
+            { href: "/roadmaps", label: "Explore" },
         ];
 
     return (

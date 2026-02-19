@@ -1,9 +1,42 @@
+"use client";
+
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import LiquidBackground from "@/components/LiquidBackground";
+import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
+    const aboutRef = useRef<HTMLElement>(null);
+    const featuresRef = useRef<HTMLElement>(null);
+    const howItWorksRef = useRef<HTMLElement>(null);
+    const [scrollProgress, setScrollProgress] = useState(0);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrolled = window.scrollY;
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = scrolled / maxScroll;
+            setScrollProgress(progress);
+
+            // Intersection Observer for scroll animations
+            const sections = [aboutRef.current, featuresRef.current, howItWorksRef.current];
+            sections.forEach(section => {
+                if (section) {
+                    const rect = section.getBoundingClientRect();
+                    const isVisible = rect.top < window.innerHeight * 0.8 && rect.bottom > 0;
+                    if (isVisible) {
+                        section.classList.add('visible');
+                    }
+                }
+            });
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        handleScroll(); // Initial check
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     return (
         <div className="flex flex-col min-h-screen">
             <LiquidBackground />
@@ -45,9 +78,11 @@ export default function Home() {
                 </section>
 
                 {/* Features Section */}
-                <section id="features" className="py-24 px-8 container mx-auto">
+                <section ref={featuresRef} id="features" className="py-24 px-8 container mx-auto scroll-fade-in">
                     <div className="text-center mb-20">
-                        <h2 className="text-4xl md:text-5xl font-black text-white">
+                        <h2 className="text-4xl md:text-5xl font-black text-white" style={{
+                            color: `rgb(${255 - scrollProgress * 50}, ${255 - scrollProgress * 50}, ${255})`
+                        }}>
                             Core Capabilities<br />
                             <span className="text-[#ffd700]">of Verified Learning Engine</span>
                         </h2>
@@ -88,7 +123,7 @@ export default function Home() {
                 </section>
 
                 {/* How It Works Section */}
-                <section id="how-it-works" className="py-24 px-8 container mx-auto">
+                <section ref={howItWorksRef} id="how-it-works" className="py-24 px-8 container mx-auto scroll-fade-in">
                     <div className="text-center mb-20">
                         <h2 className="text-4xl md:text-5xl font-black text-white">How It Works</h2>
                     </div>
@@ -113,7 +148,7 @@ export default function Home() {
                 </section>
 
                 {/* About Section */}
-                <section id="about" className="py-24 px-8 bg-black/20">
+                <section ref={aboutRef} id="about" className="py-24 px-8 bg-black/20 scroll-fade-in">
                     <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                         <div className="space-y-8">
                             <h2 className="text-5xl font-black text-white">

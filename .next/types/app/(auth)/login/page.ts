@@ -1,4 +1,4 @@
-// File: /Users/orincore/Documents/front-end/src/app/(auth)/login/page.tsx
+// File: C:\Users\Mi\Desktop\New folder (3)\frontend\src\app\(auth)\login\page.tsx
 import * as entry from '../../../../../src/app/(auth)/login/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

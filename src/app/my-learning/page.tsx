@@ -43,8 +43,9 @@ export default function MyLearningPage() {
             setRoadmaps(data.roadmaps || []);
         } catch (err: any) {
             console.error("Failed to fetch learning progress:", err);
-            if (err.message.includes("401")) {
+            if (err.message.includes("401") || err.message.includes("403")) {
                 setIsLoggedIn(false);
+                localStorage.removeItem("vle_token");
             }
         } finally {
             setLoading(false);
